@@ -9,7 +9,7 @@ namespace VectorSharp.Generic
     /// </summary>
     internal sealed class DoubleVector3 : Vector3<double>
     {
-        internal DoubleVector3(double x, double y, double z)
+        public DoubleVector3(double x, double y, double z)
             : base(x, y, z)
         { }
 

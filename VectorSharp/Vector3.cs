@@ -5,7 +5,7 @@ using System.Linq;
 namespace VectorSharp
 {
     /// <summary>
-    /// Represents a vector or point in Cartesian Space.
+    /// Represents a vector or point in 3D Cartesian Space.
     /// </summary>
     public struct Vector3
     {

@@ -4,6 +4,37 @@ using System.Linq;
 
 namespace VectorSharp.Generic
 {
+    public static class Vector3
+    {
+        private static readonly Dictionary<Type, Func<object, object, object, object>> specificTypes = new Dictionary<Type, Func<object, object, object, object>>();
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="Vector3&lt;TCoordinate&gt;"/> class with the given positions.
+        /// </summary>
+        /// <param name="x">The x part or coordinate of the vector.</param>
+        /// <param name="y">The y part of coordinate of the vector.</param>
+        /// <param name="z">The z part or coordinate of the vector.</param>
+        public static Vector3<TCoordinate> Create<TCoordinate>(TCoordinate x, TCoordinate y, TCoordinate z)
+        {
+            var coordinateType = typeof(TCoordinate);
+
+            if (!specificTypes.ContainsKey(coordinateType))
+                throw new ArgumentException("TCoordinate", "Coordinate type not currently supported.");
+
+            return (Vector3<TCoordinate>)specificTypes[coordinateType](x, y, z);
+        }
+
+        internal static void AddSpecificType<TSpecificVector3, TCoordinate>() where TSpecificVector3 : Vector3<TCoordinate>
+        {
+            var specificType = typeof(TSpecificVector3);
+            specificTypes.Add(typeof(TCoordinate), (x, y, z) => Activator.CreateInstance(specificType, x, y, z));
+        }
+    }
+
+    /// <summary>
+    /// Represents a vector or point in 3D Cartesian Space with a generic coordinate type.
+    /// </summary>
+    /// <typeparam name="TCoordinate">The type of the coordinates.</typeparam>
     public abstract class Vector3<TCoordinate>
     {
         private readonly TCoordinate x;
@@ -34,12 +65,6 @@ namespace VectorSharp.Generic
             get { return z; }
         }
 
-        /// <summary>
-        /// Creates a new instance of the <see cref="Vector3&lt;TCoordinate&gt;"/> class with the given positions.
-        /// </summary>
-        /// <param name="x">The x part or coordinate of the vector.</param>
-        /// <param name="y">The y part of coordinate of the vector.</param>
-        /// <param name="z">The z part or coordinate of the vector.</param>
         protected Vector3(TCoordinate x, TCoordinate y, TCoordinate z)
         {
             this.x = x;
@@ -127,5 +152,10 @@ namespace VectorSharp.Generic
         protected abstract Vector3<TCoordinate> Subtract(Vector3<TCoordinate> right);
 
         #endregion MathOperations
+
+        public override string ToString()
+        {
+            return "Vector3: " + X + "/" + Y + "/" + Z;
+        }
     }
 }
