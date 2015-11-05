@@ -48,9 +48,9 @@ namespace VectorSharp
         /// <summary>
         /// Creates a new instance of the <see cref="Vector3"/> struct with the given positions.
         /// </summary>
-        /// <param name="x">The position on the horizontal axis (left to right).</param>
-        /// <param name="y">The position on the vertical axis (bottom to top).</param>
-        /// <param name="z">The position on the depth axis (far away to close).</param>
+        /// <param name="x">The x part or coordinate of the vector.</param>
+        /// <param name="y">The y part of coordinate of the vector.</param>
+        /// <param name="z">The z part or coordinate of the vector.</param>
         public Vector3(double x, double y, double z)
         {
             X = x;
