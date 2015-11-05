@@ -9,6 +9,21 @@ namespace VectorSharp.Generic
     /// </summary>
     internal sealed class DoubleVector3 : Vector3<double>
     {
+        public override Vector3<double> AsUnitVector
+        {
+            get
+            {
+                var length = Length;
+
+                return new DoubleVector3(X / length, Y / length, Z / length);
+            }
+        }
+
+        public override double Length
+        {
+            get { return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2)); }
+        }
+
         public DoubleVector3(double x, double y, double z)
             : base(x, y, z)
         { }
@@ -36,11 +51,6 @@ namespace VectorSharp.Generic
         protected override Vector3<double> Invert()
         {
             return new DoubleVector3(-X, -Y, -Z);
-        }
-
-        protected override Vector3<double> Multiply(Vector3<double> other)
-        {
-            throw new NotImplementedException();
         }
 
         protected override Vector3<double> Multiply(double other)

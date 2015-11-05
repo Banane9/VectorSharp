@@ -42,6 +42,16 @@ namespace VectorSharp.Generic
         private readonly TCoordinate z;
 
         /// <summary>
+        /// Gets this Vector expressed as a unit vector.
+        /// </summary>
+        public abstract Vector3<TCoordinate> AsUnitVector { get; }
+
+        /// <summary>
+        /// Gets the length of the vector.
+        /// </summary>
+        public abstract TCoordinate Length { get; }
+
+        /// <summary>
         /// Gets the x part or coordinate of the vector.
         /// </summary>
         public TCoordinate X
@@ -144,8 +154,6 @@ namespace VectorSharp.Generic
         protected abstract Vector3<TCoordinate> Add(Vector3<TCoordinate> other);
 
         protected abstract Vector3<TCoordinate> Invert();
-
-        protected abstract Vector3<TCoordinate> Multiply(Vector3<TCoordinate> other);
 
         protected abstract Vector3<TCoordinate> Multiply(TCoordinate other);
 

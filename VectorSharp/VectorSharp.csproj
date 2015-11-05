@@ -39,7 +39,16 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generic\ByteVector3.cs" />
     <Compile Include="Generic\DoubleVector3.cs" />
+    <Compile Include="Generic\FloatVector3.cs" />
+    <Compile Include="Generic\IntVector3.cs" />
+    <Compile Include="Generic\LongVector3.cs" />
+    <Compile Include="Generic\SByteVector3.cs" />
+    <Compile Include="Generic\ShortVector3.cs" />
+    <Compile Include="Generic\UIntVector3.cs" />
+    <Compile Include="Generic\ULongVector3.cs" />
+    <Compile Include="Generic\UShortVector3.cs" />
     <Compile Include="Generic\Vector3.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="Util.cs" />
